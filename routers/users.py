@@ -223,6 +223,26 @@ async def update_gone(username: str, attraction_id: str):
 
 
 
+@router.patch("/user/{username}/delete_want/{attraction_id}")
+async def delete_want(username: str, attraction_id: str):
+    user = userCollection.find_one({"username": username})
+    if not user:
+        raise HTTPException(status_code=404, detail="User not found")
+    
+    # Remove the attraction from the 'attractions_want' array
+    update_result = userCollection.update_one(
+        {"username": username},
+        {"$pull": {"attractions_want": {"_id": attraction_id}}}
+    )
+    
+    if update_result.modified_count == 0:
+        raise HTTPException(status_code=500, detail="Failed to delete attraction from 'attractions_want'")
+    
+    # Return the updated list of 'attractions_want'
+    updated_user = userCollection.find_one({"username": username}, {"_id": 0, "attractions_want": 1})
+    return {"message": "Deleted successfully", "attractions_want": updated_user.get("attractions_want")}
+
+
 
 
 
@@ -271,3 +291,6 @@ async def update_rating(username: str, attraction_id: str, request: TimesRequest
     
     # Return an error if the attraction isn't found in the "gone" list
     raise HTTPException(status_code=404, detail="Attraction not found in 'gone' list")
+
+
+
