@@ -7,7 +7,7 @@ def attraction_schema(attraction):
         "want_to_go": attraction.get("want_to_go", False),  
         "gone": attraction.get("gone", False),  
         "rating": attraction.get("rating", 0)  ,
-        "times": attraction.get("times", 1)  
+        "times": attraction.get("times", 0)  
 }
 
 
