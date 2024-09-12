@@ -28,16 +28,26 @@ oauth2 = OAuth2PasswordBearer(tokenUrl="login")  # For token-based auth
 def search_user(username: str):
     user = userCollection.find_one({"username": username})
     if user:
-        # Ensure user dict includes '_id' and other fields
         return User(
-            id=str(user["_id"]),  # Convert ObjectId to string
+            id=str(user["_id"]),
             username=user["username"],
-            image=user.get("image", "/default.png"),  # Provide default if not present
-            attractions_want=user.get("attractions_want", []),
-            attractions_gone=user.get("attractions_gone", []),
+            image=user.get("image", "/default.png"),
+            attractions_want=[{
+                "id": str(attraction["_id"]),  # Usar el _id de MongoDB como id
+                "name": attraction["name"],
+                "area": attraction["area"],
+                "image": attraction["image"]
+            } for attraction in user.get("attractions_want", [])],
+            attractions_gone=[{
+                "id": str(attraction["_id"]),  # Usar el _id de MongoDB como id
+                "name": attraction["name"],
+                "area": attraction["area"],
+                "image": attraction["image"]
+            } for attraction in user.get("attractions_gone", [])],
             password=user["password"]
         )
     return None
+
 
 
 # Authenticate user by verifying JWT token
