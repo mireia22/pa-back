@@ -33,16 +33,22 @@ def search_user(username: str):
             username=user["username"],
             image=user.get("image", "/default.png"),
             attractions_want=[{
-                "id": str(attraction["_id"]),  # Usar el _id de MongoDB como id
+                "id": str(attraction["_id"]),
                 "name": attraction["name"],
                 "area": attraction["area"],
-                "image": attraction["image"]
+                "image": attraction["image"],
+                "want_to_go": attraction.get("want_to_go", True),  # Default to True if missing
+                "rating": attraction.get("rating", 0),  # Default to 0
+                "times": attraction.get("times", None)
             } for attraction in user.get("attractions_want", [])],
             attractions_gone=[{
-                "id": str(attraction["_id"]),  # Usar el _id de MongoDB como id
+                "id": str(attraction["_id"]),
                 "name": attraction["name"],
                 "area": attraction["area"],
-                "image": attraction["image"]
+                "image": attraction["image"],
+                "gone": attraction.get("gone", False),  # Default to False if missing
+                "rating": attraction.get("rating", 0),  # Default to 0
+                "times": attraction.get("times", None)
             } for attraction in user.get("attractions_gone", [])],
             password=user["password"]
         )

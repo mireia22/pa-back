@@ -2,10 +2,14 @@ from pydantic import BaseModel
 from typing import Optional, List
 
 class Attraction(BaseModel):
+    id: Optional[str] = None  # Asegúrate de que el ID esté incluido
     name: str
     area: str
     image: Optional[str] = None
     times: Optional[int] = None
+    want_to_go: Optional[bool] = True  # Indica si el usuario quiere ir
+    gone: Optional[bool] = False  # Indica si el usuario ya ha ido
+    rating: Optional[int] = 0  # Rating por defecto
 
 class AttractionWithRating(Attraction):
     rating: Optional[int] = None
