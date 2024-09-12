@@ -209,7 +209,7 @@ async def update_gone(username: str, attraction_id: str):
                 "image": attraction["image"],
                 "area": attraction["area"],
                 "rating": attraction.get("rating", 0)  ,    
-                "times": attraction.get("times", 0)  
+                "times": attraction.get("times", 1)  
 
             }}}
         )

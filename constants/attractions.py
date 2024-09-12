@@ -76,22 +76,8 @@ portaventura_attractions = [
         "gone": False,
         "rating" : 0
     },
-    {
-        "name": "The Magic Tree",
-        "area": "SésamoAventura",
-        "image": "/magic_tree.png",
-        "want_to_go": False,
-        "gone": False,
-        "rating" : 0
-    },
-    {
-        "name": "The Enchanted Garden",
-        "area": "SésamoAventura",
-        "image": "/enchanted_garden.png",
-        "want_to_go": False,
-        "gone": False,
-        "rating" : 0
-    },
+    
+   
     {
         "name": "Blas' Drop",
         "area": "SésamoAventura",
@@ -118,14 +104,7 @@ portaventura_attractions = [
         "gone": False,
         "rating" : 0
     },
-    {
-        "name": "Sesamoaventura Station",
-        "area": "SésamoAventura",
-        "image": "/sesamoaventura_station.png",
-        "want_to_go": False,
-        "gone": False,
-        "rating" : 0
-    },
+    
     {
         "name": "Shambhala",
         "area": "China",
@@ -324,14 +303,7 @@ portaventura_attractions = [
         "gone": False,
         "rating": 0,
     },
-    {
-        "name": "Kids Tower",
-        "area": "Ferrari Land",
-        "image": "/kids_tower.png",
-        "want_to_go": False,
-        "gone": False,
-        "rating": 0,
-    },
+   
     {
         "name": "Red Force",
         "area": "Ferrari Land",
